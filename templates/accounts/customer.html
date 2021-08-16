@@ -1,0 +1,135 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="row text-center mt-5">
+	<div class="col-md-4 mx-auto">
+		<div class="card card-body p-5 bg-dark text-white">
+			<a class="btn btn-outline-info  btn-block" href="">Update {{customer.name}}'s Profile</a>
+			<a class="btn btn-outline-danger btn-block" href="">Delete {{customer.name}}'s Profile</a>
+		</div>
+	</div>
+
+	<div class="col-md-4 mx-auto">
+		<h5 class="card-header text-center">Contact Information</h5>
+
+		<div class="card card-body px-4 bg-light">
+			<p>Name: {{customer.name}}</p>
+			<p>Email: {{customer.email}}</p>
+			<p>Phone: {{customer.phone}}</p>
+		</div>
+	</div>
+
+	<div class="col-md-3 mx-auto">
+		<div class="card card-body">
+			<h5 class="card-title text-center">Total Orders</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{order_count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+
+<br>
+<hr>
+<br>
+
+
+
+<div class="row">
+	<div class="col-md">
+		<h5 class="card-header text-center bg-dark text-white">
+			<b>Orders By {{customer.name}}</b>
+		</h5>
+		<div class="card card-body">
+			<table class="table">
+				<thead class="bg-light">
+					<tr>
+						<th>Product</th>
+						<th>Note</th>
+						<th>Date Orderd</th>
+						<th>Status</th>
+						<!-- <th>Update</th>
+						<th>Remove</th> -->
+					</tr>
+				</thead>
+
+
+				<tbody>
+					{% for order in orders %}
+					<tr>
+						<td>{{order.product}}</td>
+						<td>{{order.note}}</td>
+						<td>{{order.date_created}}</td>
+						<td>{{order.status}}</td>
+						<!-- <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
+
+						<td>
+							<button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+								data-target="#exampleModalDelete">
+								delete
+							</button>
+							<!-- Modal -->
+							<!--<div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Are you sure you want to
+												delete <b> "{{order.product}}" </b> ordered by
+												<button>{{order.customer.name}}</button>?
+											</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-footer">
+											<form action="{% url 'delete_order' order.id %}" method="post">
+												{% csrf_token %}
+												<button type="button" class="btn btn-warning"
+													data-dismiss="modal">Cancel</button>
+												<button type="submit" class="btn btn-danger">Delete</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td> -->
+						<!-- <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Delete</a></td> -->
+					</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row text-center">
+	<div class="col-md mx-auto">
+		<div class="card-header">
+			<h5 class="card-title font-weight-bold">Search In Orders:</h5>
+		</div>
+		<div class="card card-body mx-auto bg-light">
+			<form method="get">
+				{% csrf_token %}
+				<label> Product</label>
+				{{myFilter.form.product}}
+
+				<label> Status</label>
+				{{myFilter.form.status}}
+
+				<label> Notes</label>
+				{{myFilter.form.note}}
+
+
+				<button class="btn btn-primary btn-sm" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

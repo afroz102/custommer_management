@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+{% include 'navbar.html' %}
+<div class="conatainer text-center">
+    {{user.username}}
+
+    <form action="{% url 'logout'%}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Logout" class="btn btn-info">
+
+    </form>
+</div>
+{%endblock%}

@@ -1,0 +1,24 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class="row mt-5">
+    <div class="col-md-10 mx-auto">
+        <div class="card card-body text-center">
+            <h5 class="card-header bg-dark text-white">Create Your Order <b>{{order.customer.name}}</b>'s Order</h5>
+            <form class="mt-4" action="" method="POST">
+                {% csrf_token %}
+                <label>Product: </label>
+                {{form.product}}
+                <label class="ml-2">Notes: </label>
+                {{form.note}}
+
+
+                <input class="btn btn-primary ml-4" type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

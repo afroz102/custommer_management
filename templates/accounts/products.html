@@ -1,0 +1,98 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<h5 class="card-header text-center bg-dark text-white">Products</h5>
+
+		<div class="card card-body">
+			<table class="table">
+				<thead class="bg-light">
+					<tr>
+						<th>Product</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for product in products %}
+					<tr>
+						<td>{{product.name}}</td>
+						<td>{{product.category}}</td>
+						<td>${{product.price}}</td>
+						<td> <a class="btn btn-sm btn-info" href="">edit</a></td>
+						<td>
+							<form action="" method="post">
+								<a class="btn btn-sm btn-danger" type="submit">delete</a>
+							</form>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<hr>
+			<!-- <a class="btn btn-outline-info btn-block" href="">Add a New Product</a> -->
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="row mt-2">
+	<div class="col-md-10 bg-light mx-auto">
+		<h5 class="card-header text-center bg-dark text-white mt-2">Add a New Product Here</h5>
+		<div class="card-body">
+			<form method="POST" action="" class="mt-4">
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" class="form-control" placeholder="Product Name">
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label>Category</label>
+							<select class="form-control">
+								<option>1</option>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label>Tags</label>
+							<select multiple class="form-control">
+								<option>1</option>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label>Description</label>
+							<textarea class="form-control" rows="2"></textarea>
+						</div>
+					</div>
+					<div class="col mt-4">
+						<a class="btn btn-primary btn-block" type="submit">Create</a>
+						<!-- <button type="submit" class="btn btn-primary"></button> -->
+					</div>
+				</div>
+
+				<!-- <div class="row">
+				</div> -->
+
+				<!-- <div class="row">
+					
+				</div> -->
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
